@@ -81,7 +81,7 @@ Obviously, the f1 score is higher with the help of punctuation marks.
 
 It is quite interesting that after adding CRF layer, the accuracy drops some points. As a matter of fact, to make the learning process easier and save time, I trained the BiLSTM firstly and then added the CRF layer above the pretrained BiLSTM model. To figure out why CRF doesn't work, I repacked the features of LSTM to truncate the gradient. After a epoch of training, I printed the weights of transition matrix:
 
-- | B | M | E | S | &lt;beg&gt; | &lt;end&gt;
+\- | B | M | E | S | &lt;beg&gt; | &lt;end&gt;
 --- | --- | --- | --- |--- | --- | ---
 B|0.0| 0.0|15.5|15.0|12.9| 0.0
 M| 16.1|13.6| 0.0| 0.0| 0.9| 0.0
