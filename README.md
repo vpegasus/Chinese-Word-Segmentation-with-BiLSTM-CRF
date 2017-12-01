@@ -91,7 +91,7 @@ S|0.0| 0.0|15.0|14.1|14.3| 0.0
 &lt;end&gt;|11.0| 9.7|11.6|14.3 |-14.4| 0.0
 
 
-As the table shows, some weights of transition matrix haven't even been changed ( remember that I set the initiate the weights of this matrix with 0's ). Look into the tables, It is reasonable that the weights towards &lt;beg&gt; is negative because there is no node can be followed with START_TAG. Also, it is correct that M cannot be followed with B, B cannot precede B itself and so on.
+As the table shows, some weights of transition matrix haven't even been changed ( remember that I initiated the weights of matrix with 0's ). Look into the tables, it is reasonable that the weights towards &lt;beg&gt; are negative because there is no node can be followed with START_TAG. Also, it is correct that M cannot be followed with B, B cannot precede B itself and so on.
 
 It is clear that the work of CRF has been done by BiLSTM network, thus this weights will not obtain any back-propagated gradient. As we can see, 3-layer BiLSTM is capable to capture the structure information of the labeling, and it may be redundant to add CRF layer.
 
