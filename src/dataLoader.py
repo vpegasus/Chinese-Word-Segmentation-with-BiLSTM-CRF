@@ -39,7 +39,6 @@ def longReplace(s):
     return '\n'.join(ss)
 
 
-
 class Corpus(object):
 
     def __init__(self, dataDir):
