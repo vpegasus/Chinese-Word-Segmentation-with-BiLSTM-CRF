@@ -39,18 +39,35 @@ def test(testSet, pct):
     return f1
 
 
-if __name__ == '__main__':
-    n_bis = [20000, 30000, 50000, 100000, 200000, 500000]
-    steps = [1e-4, 1e-3, 5e-3, 1e-2, 5e-2, 1e-1, 5e-1, 1]
-    n_epoch = 10
-
-    corpus = Corpus(config['data_dir'])
+def search_for_parameter():
+    n_bis = [ 100000, 200000, 500000]
+    steps = [ 5e-2, 1e-1, 5e-1, 1]
+    n_epoch = 5
 
     for n_bi in n_bis:
         for step in steps:
             print('-'*20)
             print(n_bi, ' ', step)
+            config['n_bigram'] = n_bi
+            config['smooth'] = step
+            corpus = Corpus(config['data_dir'])
             pct = perceptron()
             for cnt in range(n_epoch):
                 train(corpus.trainSet, pct)
             test(corpus.testSet, pct)
+
+if __name__ == '__main__':
+    #search_for_parameter()
+    pct = perceptron()
+    corpus = Corpus(config['data_dir'])
+    n_epoch = 5
+    while True:
+        for cnt in range(n_epoch):
+            print('Happy training!')
+            train(corpus.trainSet, pct)
+        print('\nHappy testing!')
+        test(corpus.testSet, pct)
+        config['smooth'] /= 10
+        if config['smooth'] < 1.01e-10:
+            break
+

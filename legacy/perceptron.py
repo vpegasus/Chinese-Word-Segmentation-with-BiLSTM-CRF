@@ -6,7 +6,7 @@ import numpy as np
 class perceptron(object):
     def __init__(self):
         self.n_features = config['n_unigram'] + config['n_bigram']*3
-        self.theta = np.random.rand(self.n_features, 4)
+        self.theta = np.zeros((self.n_features, 4))
 
     def convert(self, xs):
         xs = xs.copy()
@@ -34,4 +34,13 @@ class perceptron(object):
                 continue
             self.theta[x, y] += config['smooth']
             self.theta[x, pred] -= config['smooth']
+
+    def zero_oov(self):
+        i = config['n_unigram']
+        j = config['n_bigram']
+        indices = np.array([
+            i, i+j, i+j*2, i+j*3
+        ], dtype=np.int32)
+        indices -= 1
+        self.theta[indices, :] = 0
 
